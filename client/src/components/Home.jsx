@@ -1,8 +1,15 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemons } from '../actions';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
+//Components
+import Cards from './Cards';
+import BtnCreate from './BtnCreate';
+import NavBar from './NavBar';
+import Header from './Header';
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -11,24 +18,20 @@ const Home = () => {
 		dispatch(getPokemons());
 	}, []);
 
-	return (
-		<div>
-			<Link to='/pokemons'>Create Poke</Link>
-			<h1>POKEMON API HENRY</h1>
-			{/* Alfabeticamente*/}
-			<select>
-				<option value='asc'>Ascendente</option>
-				<option value='desc'>Descendente</option>
-			</select>
-			{/*Por Fuerza*/}
-			<select>
-				<option value='asc'>Ascendente</option>
-				<option value='desc'>Descendente</option>
-			</select>
+	const ContainerDiv = styled.div`
+		background-color: #141414;
+		color: #fff;
+	`;
 
-			{/*Por Tipo*/}
-			{/*Por DB / API*/}
-		</div>
+	return (
+		<ContainerDiv>
+			<Header />
+			<NavBar />
+			<Link to='/pokemons'>
+				<BtnCreate />
+			</Link>
+			<Cards allPokemons={allPokemons} />
+		</ContainerDiv>
 	);
 };
 

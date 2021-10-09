@@ -39,7 +39,7 @@ let getPokemonDB = async () => {
 
 let pokeFilterByName = (allPoke, name) => {
 	return allPoke.filter((poke) => {
-		return poke.name.toLowerCase().includes(name.toLowerCase());
+		return poke.name.toLowerCase() === name.toLowerCase();
 	});
 };
 
