@@ -15,15 +15,6 @@ const Header = () => {
 		}
 	`;
 
-	const SVG = styled.svg`
-		height: 25px;
-		@media (min-width: 900px) {
-			& {
-				display: none;
-			}
-		}
-	`;
-
 	const Container = styled.div`
 		display: flex;
 		justify-content: space-between;
@@ -36,6 +27,7 @@ const Header = () => {
 				position: sticky;
 				top: -0.5px;
 				z-index: 1;
+				justify-content: center;
 			}
 		}
 	`;
@@ -43,23 +35,9 @@ const Header = () => {
 	return (
 		<Container>
 			<LogoImg src={logo} />
-			<Link to='/pokemons'>
+			<Link to='/create'>
 				<BtnCreate flag={true} />
 			</Link>
-			<SVG
-				xmlns='http://www.w3.org/2000/svg'
-				class='h-6 w-6'
-				fill='none'
-				viewBox='0 0 24 24'
-				stroke='currentColor'
-			>
-				<path
-					stroke-linecap='round'
-					stroke-linejoin='round'
-					stroke-width='2'
-					d='M4 6h16M4 12h16m-7 6h7'
-				/>
-			</SVG>
 		</Container>
 	);
 };

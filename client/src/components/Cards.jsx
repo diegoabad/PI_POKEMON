@@ -7,10 +7,15 @@ import Loaded from './Loaded';
 const Cards = ({ allPokemons }) => {
 	const Containercards = styled.div`
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 		padding: 10px 80px 50px;
 		grid-gap: 30px 30px;
 		justify-content: center;
+		@media (max-width: 900px) {
+			& {
+				padding-bottom: 10px;
+			}
+		}
 	`;
 
 	return (

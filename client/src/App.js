@@ -1,17 +1,26 @@
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
 import Home from './components/Home';
+import PokeCreate from './components/PokeCreate';
 import LandingPage from './components/LandingPage';
-
+import Error from './components/Error';
 function App() {
 	return (
 		<div className='App'>
-			<Route exact path='/'>
-				<LandingPage />
-			</Route>
-			<Route exact path='/home'>
-				<Home />
-			</Route>
+			<Switch>
+				<Route exact path='/'>
+					<LandingPage />
+				</Route>
+				<Route path='/home'>
+					<Home />
+				</Route>
+				<Route path='/create'>
+					<PokeCreate />
+				</Route>
+				<Route>
+					<Error />
+				</Route>
+			</Switch>
 		</div>
 	);
 }

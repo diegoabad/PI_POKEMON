@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import bg from '../img/1.jpg';
 import bgm from '../img/377340.png';
@@ -44,9 +44,9 @@ const LandingPage = () => {
 	return (
 		<ContainerLanding>
 			<LandingH1>POKE API</LandingH1>
-			<LandingBtn>
-				<Link to='/home'>Enter</Link>
-			</LandingBtn>
+			<NavLink to='/home'>
+				<LandingBtn>Enter</LandingBtn>
+			</NavLink>
 		</ContainerLanding>
 	);
 };

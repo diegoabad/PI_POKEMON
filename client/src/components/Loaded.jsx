@@ -5,9 +5,8 @@ import gif from '../img/2.gif';
 const Loaded = () => {
 	const Gif = styled.img`
 		width: 150px;
-		align-items: center;
 		display: inline;
-		margin: 150px 0 40px;
+		margin: 150px auto 40px;
 	`;
 
 	const ContainerGif = styled.div`
@@ -16,14 +15,16 @@ const Loaded = () => {
 		color: #fff;
 		display: flex;
 		flex-direction: column;
-
-		align-items: center;
+		position: absolute;
+		left: 0px;
+		right: 0px;
 	`;
 
 	const Loading = styled.p`
 		font-size: 20px;
 		letter-spacing: 10px;
 	`;
+
 	return (
 		<ContainerGif>
 			<Gif src={gif} />

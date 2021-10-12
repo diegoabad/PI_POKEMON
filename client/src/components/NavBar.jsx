@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import BtnCreate from './BtnCreate';
-
-const NavBar = () => {
+import SearchBar from './SearchBar';
+const NavBar = ({ types, clearFilter, filterCreated, filterTypes, sort }) => {
 	const NavFilter = styled.nav`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 30px 80px 40px;
+		padding: 40px 80px 40px;
 		background: #141414;
 		@media (max-width: 900px) {
 			& {
@@ -20,25 +19,8 @@ const NavBar = () => {
 		}
 	`;
 
-	const Search = styled.input`
-		padding: 10px 20px;
-		border-radius: 5px;
-		border: 1px solid #7e7e7e;
-		background: #1e2125;
-		color: #e2dddd;
-		font-size: 16px;
-		margin: 10px 0 10px;
-		letter-spacing: 1px;
-		flex-basis: 40%;
-		@media (max-width: 900px) {
-			& {
-				width: 75vw;
-			}
-		}
-	`;
-
 	const ContainerFilter = styled.div`
-		flex-basis: 60%;
+		flex-basis: 70%;
 		display: flex;
 		justify-content: flex-end;
 		padding-left: 30px;
@@ -56,7 +38,7 @@ const NavBar = () => {
 		margin-left: 40px;
 		letter-spacing: 1px;
 		cursor: pointer;
-
+		text-transform: capitalize;
 		@media (max-width: 900px) {
 			& {
 				display: none;
@@ -84,25 +66,39 @@ const NavBar = () => {
 
 	return (
 		<NavFilter>
-			<Search placeholder='Search Your Favourite Pokémon'></Search>
+			<SearchBar />
 			<ContainerFilter>
-				<BtnClear>Clear Filter</BtnClear>
-				<Select>
-					<option>Types</option>
-					<option>Exist</option>
-					<option>DB</option>
-				</Select>
-				<Select>
+				<BtnClear onClick={(e) => clearFilter(e)}>Clear Filter</BtnClear>
+				<Select onChange={(e) => filterTypes(e)}>
+					<option disabled selected>
+						Types
+					</option>
 					<option value='all'>All</option>
-					<option value='exist'>Exist</option>
-					<option value='created'>Created</option>
+					{types?.map((type) => {
+						return (
+							<option
+								key={type.id}
+								value={`${type.name}`}
+							>{`${type.name}`}</option>
+						);
+					})}
 				</Select>
-				<Select>
-					<option>Order By</option>
-					<option>A - Z</option>
-					<option>Z - A</option>
-					<option>Attack +</option>
-					<option>Attack -</option>
+				<Select onChange={(e) => filterCreated(e)}>
+					<option disabled selected>
+						Created/Exist
+					</option>
+					<option value='all'>All</option>
+					<option value='number'>Exist</option>
+					<option value='string'>Created</option>
+				</Select>
+				<Select onChange={(e) => sort(e)}>
+					<option disabled selected>
+						Order By
+					</option>
+					<option value='alf-asc'>A - Z</option>
+					<option value='alf-des'>Z - A</option>
+					<option value='att-asc'>Attack +</option>
+					<option value='att-des'>Attack -</option>
 				</Select>
 			</ContainerFilter>
 		</NavFilter>

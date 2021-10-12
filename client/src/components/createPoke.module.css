@@ -1,0 +1,87 @@
+.container {
+	background-image: url('../img/form2.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.containerForm {
+	background-color: #ffffffdc;
+	height: 750px;
+	width: 800px;
+	border-radius: 30px;
+	margin: 200px;
+	padding: 20px;
+	color: #2e2e2e;
+	display: flex;
+	flex-direction: column;
+}
+.exit {
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	color: #fff;
+}
+
+.title {
+	font-family: 'Poppins';
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin: 40px 0 20px;
+}
+
+.btn {
+	background-color: #1170ec;
+	border: none;
+	padding: 15px 35px;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	color: white;
+	width: 100%;
+}
+
+.btn:hover {
+	background-color: #1ca0ec;
+}
+
+.containerTypes {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	padding: 20px 0;
+	grid-gap: 20px;
+	margin: 20px 0;
+}
+
+.check {
+	margin-right: 10px;
+}
+
+.lbl {
+	text-transform: capitalize;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.inputForm {
+	font-size: 18px;
+	height: 20px;
+	padding: 15px 35px;
+	border-radius: 5px;
+	margin: 20px 10px 0 0;
+	background: #f5f4f3;
+	border: 1px solid #5a5959;
+	letter-spacing: 1px;
+	width: 300px;
+}
+
+.inputForm::placeholder {
+	color: #3d3c3c;
+}

@@ -52,6 +52,7 @@ export default function Card({ id, name, img, types }) {
 		align-items: center;
 		height: 130px;
 		position: relative;
+		max-width: 400px;
 
 		&:hover {
 			transform: translateY(-5px);
@@ -116,7 +117,7 @@ export default function Card({ id, name, img, types }) {
 				</TypeContainer>
 			</Infocard>
 			<ContainerImg>
-				<PokeImg src={img} />
+				<PokeImg src={img} alt={`Imagen de ${name}`} />
 			</ContainerImg>
 		</Containercard>
 	);

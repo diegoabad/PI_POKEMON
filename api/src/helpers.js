@@ -13,6 +13,7 @@ let getPokemonApi = async () => {
 				id: info.data.id,
 				img: info.data.sprites.other.dream_world.front_default,
 				types: info.data.types.map((e) => e.type.name),
+				attack: info.data.stats[1].base_stat,
 			});
 		});
 		return pokemones;
@@ -21,7 +22,7 @@ let getPokemonApi = async () => {
 
 let getPokemonDB = async () => {
 	let poke = await Pokemon.findAll({
-		attributes: ['name', 'id', 'img'],
+		attributes: ['name', 'id', 'img', 'attack'],
 		include: {
 			model: Type,
 		},
@@ -30,8 +31,11 @@ let getPokemonDB = async () => {
 		return {
 			id: p.id,
 			name: p.name,
-			img: p.img,
+			img:
+				p.img ||
+				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/151.svg',
 			types: p.types.map((t) => t.name),
+			attack: p.attack || 0,
 		};
 	});
 	return poke;

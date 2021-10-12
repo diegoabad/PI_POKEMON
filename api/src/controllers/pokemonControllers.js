@@ -39,18 +39,22 @@ const createPokemon = async (
 	weight,
 	types
 ) => {
-	let poke = await Pokemon.create({
-		name: name.toLowerCase(),
-		id,
-		hp,
-		img,
-		attack,
-		defense,
-		speed,
-		height,
-		weight,
-	});
-	await poke.addType(types);
+	try {
+		let poke = await Pokemon.create({
+			name: name.toLowerCase(),
+			id,
+			hp,
+			img,
+			attack,
+			defense,
+			speed,
+			height,
+			weight,
+		});
+		await poke.addType(types);
+	} catch {
+		return 'error';
+	}
 };
 
 module.exports = {

@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
 	const { name, id, img, hp, attack, defense, speed, height, weight, types } =
 		req.body;
-	await createPokemon(
+	let result = await createPokemon(
 		name,
 		id,
 		img,
@@ -37,7 +37,9 @@ router.post('/', async (req, res) => {
 		weight,
 		types
 	);
-	res.status(200).send('Pokemon Creado Correctamente');
+	result === 'error'
+		? res.status(400).send('El Pokemon no pudo ser creado')
+		: res.status(200).send('Pokemon Creado Correctamente');
 });
 
 module.exports = router;
