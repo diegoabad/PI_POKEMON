@@ -23,6 +23,9 @@ const PokeCreate = () => {
 		img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg',
 	});
 
+	/* 	let btnMiau = document.getElementById('btn');
+	btnMiau.disabled = true; */
+
 	function handleChange(e) {
 		e.preventDefault();
 		setInput({

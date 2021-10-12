@@ -26,6 +26,22 @@ export function getPokemonsByName(payload) {
 	};
 }
 
+export function getPokemonsById(payload) {
+	return async function (dispatch) {
+		try {
+			const pokemon = await axios.get(
+				'http://localhost:3001/pokemons/' + payload
+			);
+			dispatch({
+				type: 'GET_POKEMONS_DETAIL',
+				payload: pokemon.data,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+}
+
 export function postPokemon(payload) {
 	return async function (dispatch) {
 		const response = await axios.post(

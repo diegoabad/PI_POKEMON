@@ -39,7 +39,7 @@ const createPokemon = async (
 	weight,
 	types
 ) => {
-	try {
+	if (name) {
 		let poke = await Pokemon.create({
 			name: name.toLowerCase(),
 			id,
@@ -52,7 +52,7 @@ const createPokemon = async (
 			weight,
 		});
 		await poke.addType(types);
-	} catch {
+	} else {
 		return 'error';
 	}
 };

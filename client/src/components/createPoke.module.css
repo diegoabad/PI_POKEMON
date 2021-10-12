@@ -10,8 +10,9 @@
 }
 
 .containerForm {
+	box-shadow: 14px 20px 24px -8px rgba(0, 0, 0, 0.53);
 	background-color: #ffffffdc;
-	height: 750px;
+	height: 850px;
 	width: 800px;
 	border-radius: 30px;
 	margin: 200px;
@@ -42,10 +43,24 @@
 	border: none;
 	padding: 15px 35px;
 	border-radius: 5px;
-	font-size: 18px;
+	font-size: 20px;
+	letter-spacing: 1px;
 	cursor: pointer;
 	color: white;
 	width: 100%;
+}
+
+.btnDisabled {
+	border: none;
+	padding: 15px 35px;
+	border-radius: 5px;
+	font-size: 20px;
+	letter-spacing: 1px;
+	cursor: pointer;
+	color: white;
+	width: 100%;
+	cursor: not-allowed;
+	background-color: #a5a5a5ef;
 }
 
 .btn:hover {
@@ -75,13 +90,39 @@
 	height: 20px;
 	padding: 15px 35px;
 	border-radius: 5px;
-	margin: 20px 10px 0 0;
+	margin: 40px 10px 0 0;
 	background: #f5f4f3;
 	border: 1px solid #5a5959;
 	letter-spacing: 1px;
 	width: 300px;
 }
+.inputFormError {
+	font-size: 18px;
+	height: 20px;
+	padding: 15px 35px;
+	border-radius: 5px;
+	margin: 40px 10px 0 0;
+	background: #ec8c7f73;
+	border: 1px solid #e92c2c;
+	letter-spacing: 1px;
+	width: 300px;
+}
+
+.inputFormOk {
+	font-size: 18px;
+	height: 20px;
+	padding: 15px 35px;
+	border-radius: 5px;
+	margin: 40px 10px 0 0;
+	background: #9eec7f73;
+	border: 1px solid #1a880b;
+	letter-spacing: 1px;
+	width: 300px;
+}
+.inputFormError::placeholder {
+	color: #444444;
+}
 
 .inputForm::placeholder {
-	color: #3d3c3c;
+	color: #444444;
 }

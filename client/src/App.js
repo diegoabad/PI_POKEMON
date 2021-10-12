@@ -4,6 +4,7 @@ import Home from './components/Home';
 import PokeCreate from './components/PokeCreate';
 import LandingPage from './components/LandingPage';
 import Error from './components/Error';
+import Detail from './components/Detail';
 function App() {
 	return (
 		<div className='App'>
@@ -16,6 +17,9 @@ function App() {
 				</Route>
 				<Route path='/create'>
 					<PokeCreate />
+				</Route>
+				<Route path='/pokemons/:id'>
+					<Detail />
 				</Route>
 				<Route>
 					<Error />
