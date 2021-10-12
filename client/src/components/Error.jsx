@@ -63,6 +63,11 @@ const Error = () => {
 				left: 10px;
 			}
 		}
+		&:hover {
+			transform: scale(1.2);
+			transition: 1s ease-in-out;
+			color: #36a0e7;
+		}
 	`;
 
 	return (

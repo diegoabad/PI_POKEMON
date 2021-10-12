@@ -36,11 +36,12 @@ const Detail = () => {
 		align-items: center;
 	`;
 	const ContainerPoke = styled.div`
+		box-shadow: 8px 13px 26px 9px rgba(0, 0, 0, 0.75);
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background: #ffffffea;
+		background: #dfdbdbea;
 		width: 900px;
 		height: 700px;
 		border-radius: 30px;
@@ -61,7 +62,7 @@ const Detail = () => {
 	`;
 
 	const ContainerStats = styled.div`
-		padding: 30px;
+		padding: 10px 30px;
 		margin-left: 100px;
 	`;
 
@@ -72,16 +73,22 @@ const Detail = () => {
 		height: 600px;
 	`;
 	const Stats = styled.p`
-		font-size: 20px;
+		font-size: 16px;
 		font-weight: 700;
 		margin-right: 20px;
+		text-decoration: underline;
 	`;
 	const Info = styled.p`
-		font-size: 20px;
+		font-size: 16px;
 	`;
 
 	const MiniCont = styled.div`
+		background-color: #ffffffb2;
 		display: flex;
+		box-shadow: -1px 0px 18px -5px rgba(0, 0, 0, 0.75);
+		border-radius: 30px;
+		padding: 0 20px;
+		margin-bottom: 15px;
 	`;
 
 	const SVG = styled.svg`
@@ -91,6 +98,12 @@ const Detail = () => {
 		position: absolute;
 		left: 80px;
 		top: 80px;
+
+		&:hover {
+			transform: scale(1.2);
+			transition: 1s ease-in-out;
+			color: #36a0e7;
+		}
 	`;
 
 	const ContainerTypes = styled.div`

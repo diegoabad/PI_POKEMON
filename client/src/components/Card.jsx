@@ -8,7 +8,7 @@ export default function Card({ id, name, img, types }) {
 				return '#109617be';
 				break;
 			case 'fire':
-				return '#e0830add';
+				return '#e0790add';
 				break;
 
 			case 'water':
@@ -20,24 +20,57 @@ export default function Card({ id, name, img, types }) {
 				break;
 
 			case 'electric':
-				return '#e9da07c5';
+				return '#d0c208c5';
 				break;
 
 			case 'poison':
-				return '#8006c7c8';
+				return '#9c40d1c7';
 				break;
 
 			case 'fairy':
-				return '#e25ae2e1';
+				return '#d873d8e0';
 				break;
 			case 'normal':
 				return '#b6b6b6dd';
 				break;
 			case 'ground':
-				return '#7c3303e1';
+				return '#632902c7';
+				break;
+			case 'ghost':
+				return '#3f0e43c5';
+				break;
+			case 'flying':
+				return '#719ab6c5';
+				break;
+			case 'fighting':
+				return '#61041585';
+				break;
+			case 'rock':
+				return '#2c181cc5';
+				break;
+			case 'steel':
+				return '#3c3b3bc5';
+				break;
+			case 'steel':
+				return '#3c3b3bc5';
+				break;
+			case 'psychic':
+				return '#df7fe2c5';
+				break;
+			case 'ice':
+				return '#70d7f7c5';
+				break;
+			case 'dragon':
+				return '#3b3fffc5';
+				break;
+			case 'dark':
+				return '#303031c5';
+				break;
+			case 'shadow':
+				return '#0e0e37c5';
 				break;
 			default:
-				return '#000';
+				return '#eee8e8a8';
 		}
 	}
 

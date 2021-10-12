@@ -11,20 +11,18 @@ const PokeCreate = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const types = useSelector((state) => state.types);
-	const pokemons = useSelector((state) => state.pokemons);
+	const pokemons = useSelector((state) => state.allPokemons);
 	const [input, setInput] = useState({
 		name: '',
-		hp: 0,
-		attack: 0,
-		defense: 0,
-		speed: 0,
-		weight: 0,
-		height: 0,
+		hp: 1,
+		attack: 1,
+		defense: 1,
+		speed: 1,
+		weight: 1,
+		height: 1,
 		types: [],
 		img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg',
 	});
-
-	const [errors, setErrors] = useState({});
 
 	function handleChange(e) {
 		e.preventDefault();
@@ -66,16 +64,38 @@ const PokeCreate = () => {
 		history.push('/home');
 	}
 
+	function handleChangeName(e) {
+		setInput({
+			...input,
+			[e.target.name]: e.target.value,
+		});
+		setError(
+			validate({
+				...input,
+				[e.target.name]: e.target.value,
+			})
+		);
+		if (
+			pokemons.find(
+				(poke) =>
+					poke.name.toLowerCase() === e.target.value.toLowerCase().trim()
+			)
+		) {
+			setError({
+				...input,
+				[e.target.name]: 'Pokémon duplicated',
+			});
+		}
+	}
+	const [error, setError] = useState({});
+
 	function validate(input) {
 		let errors = {};
-		if (!input.name.length) {
+		if (input.name === '') {
 			errors.name = "The Pokémon's name is required";
 		}
 
-		if (input.types.length > 2 && input.types.length === 0) {
-			errors.types =
-				'The pokemon can have a minimum of one type and a maximum of 2';
-		}
+		return errors;
 	}
 
 	useEffect(() => {
@@ -84,7 +104,15 @@ const PokeCreate = () => {
 
 	return (
 		<div className={styles.container}>
-			<NavLink to='/home' className={styles.exit}>
+			{error.name ? (
+				<div className={styles.containerError}>
+					<p className={styles.errTitle}>LIST ERROR</p>
+					<ul class={styles.UlistErr}>
+						<li class={styles.listErr}>{error.name}</li>
+					</ul>
+				</div>
+			) : null}
+			<NavLink to='/home' className={styles.svgBtn}>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					class='h-6 w-6'
@@ -103,13 +131,23 @@ const PokeCreate = () => {
 			<div className={styles.containerForm}>
 				<h1 className={styles.title}>Create Pokémon</h1>
 				<form onSubmit={(e) => handleSubmit(e)}>
-					<input
-						className={styles.inputForm}
-						type='text'
-						name='name'
-						placeholder='Name'
-						onChange={(e) => handleChange(e)}
-					></input>
+					{error.name ? (
+						<input
+							className={styles.inputFormError}
+							type='text'
+							name='name'
+							placeholder='Name'
+							onChange={(e) => handleChangeName(e)}
+						></input>
+					) : (
+						<input
+							className={styles.inputForm}
+							type='text'
+							name='name'
+							placeholder='Name'
+							onChange={(e) => handleChangeName(e)}
+						></input>
+					)}
 
 					<input
 						className={styles.inputForm}
@@ -183,10 +221,12 @@ const PokeCreate = () => {
 							);
 						})}
 					</div>
-					{input.name !== '' ? (
-						<button className={styles.btn}>Create</button>
+					{error.name || input.name === '' ? (
+						<button className={styles.btnDisabled} disabled>
+							Create
+						</button>
 					) : (
-						<button className={styles.btnDisabled}>Create</button>
+						<button className={styles.btn}>Create</button>
 					)}
 				</form>
 			</div>
