@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../img/logo.png';
 import BtnCreate from './BtnCreate';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
 	const LogoImg = styled.img`
@@ -34,10 +34,12 @@ const Header = () => {
 
 	return (
 		<Container>
-			<LogoImg src={logo} />
-			<Link to='/create'>
+			<NavLink to='/'>
+				<LogoImg src={logo} />
+			</NavLink>
+			<NavLink to='/create'>
 				<BtnCreate flag={true} />
-			</Link>
+			</NavLink>
 		</Container>
 	);
 };

@@ -11,6 +11,7 @@ const PokeCreate = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const types = useSelector((state) => state.types);
+	const pokemons = useSelector((state) => state.pokemons);
 	const [input, setInput] = useState({
 		name: '',
 		hp: 0,
@@ -23,8 +24,7 @@ const PokeCreate = () => {
 		img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg',
 	});
 
-	/* 	let btnMiau = document.getElementById('btn');
-	btnMiau.disabled = true; */
+	const [errors, setErrors] = useState({});
 
 	function handleChange(e) {
 		e.preventDefault();
@@ -50,7 +50,6 @@ const PokeCreate = () => {
 	}
 
 	function handleSubmit(e) {
-		e.preventDefault();
 		dispatch(postPokemon(input));
 		alert('Pokémon Created');
 		setInput({
@@ -65,6 +64,18 @@ const PokeCreate = () => {
 			img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg',
 		});
 		history.push('/home');
+	}
+
+	function validate(input) {
+		let errors = {};
+		if (!input.name.length) {
+			errors.name = "The Pokémon's name is required";
+		}
+
+		if (input.types.length > 2 && input.types.length === 0) {
+			errors.types =
+				'The pokemon can have a minimum of one type and a maximum of 2';
+		}
 	}
 
 	useEffect(() => {
@@ -99,10 +110,11 @@ const PokeCreate = () => {
 						placeholder='Name'
 						onChange={(e) => handleChange(e)}
 					></input>
+
 					<input
 						className={styles.inputForm}
 						type='number'
-						min='0'
+						min='1'
 						name='hp'
 						placeholder='HP'
 						onChange={(e) => handleChange(e)}
@@ -110,7 +122,7 @@ const PokeCreate = () => {
 					<input
 						className={styles.inputForm}
 						type='number'
-						min='0'
+						min='1'
 						name='attack'
 						placeholder='Attack'
 						onChange={(e) => handleChange(e)}
@@ -118,7 +130,7 @@ const PokeCreate = () => {
 					<input
 						className={styles.inputForm}
 						type='number'
-						min='0'
+						min='1'
 						name='defense'
 						placeholder='Defense'
 						onChange={(e) => handleChange(e)}
@@ -126,14 +138,14 @@ const PokeCreate = () => {
 					<input
 						className={styles.inputForm}
 						type='number'
-						min='0'
+						min='1'
 						name='speed'
 						placeholder='Speed'
 					></input>
 					<input
 						className={styles.inputForm}
 						type='number'
-						min='0'
+						min='1'
 						name='weight'
 						placeholder='Weight'
 						onChange={(e) => handleChange(e)}
@@ -141,7 +153,7 @@ const PokeCreate = () => {
 					<input
 						className={styles.inputForm}
 						type='number'
-						min='0'
+						min='1'
 						name='height'
 						placeholder='Height'
 						onChange={(e) => handleChange(e)}
@@ -171,8 +183,11 @@ const PokeCreate = () => {
 							);
 						})}
 					</div>
-
-					<button className={styles.btn}>Create</button>
+					{input.name !== '' ? (
+						<button className={styles.btn}>Create</button>
+					) : (
+						<button className={styles.btnDisabled}>Create</button>
+					)}
 				</form>
 			</div>
 		</div>

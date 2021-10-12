@@ -9,7 +9,7 @@ import {
 	orderBy,
 } from '../actions';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 //Components
 import Cards from './Cards';
@@ -78,9 +78,9 @@ const Home = () => {
 				filterTypes={handleFilterTypes}
 				sort={handleSort}
 			/>
-			<Link to='/pokemons'>
+			<NavLink to='/pokemons'>
 				<BtnCreate />
-			</Link>
+			</NavLink>
 			<Cards allPokemons={currentPokes} />
 			<Paged
 				pokemonsLength={allPokemons.length}

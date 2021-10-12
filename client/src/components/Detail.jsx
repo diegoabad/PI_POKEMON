@@ -12,8 +12,18 @@ const Detail = () => {
 		dispatch(getPokemonsById(id));
 	}, [dispatch]);
 
-	const { name, img, attack, defense, speed, types, hp, weight, height } =
-		useSelector((state) => state.detail);
+	const {
+		id: idPoke,
+		name,
+		img,
+		attack,
+		defense,
+		speed,
+		types,
+		hp,
+		weight,
+		height,
+	} = useSelector((state) => state.detail);
 
 	const Container = styled.div`
 		background: url(${bg});
@@ -26,6 +36,7 @@ const Detail = () => {
 		align-items: center;
 	`;
 	const ContainerPoke = styled.div`
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -98,25 +109,36 @@ const Detail = () => {
 		margin: 20px;
 	`;
 
+	const ID = styled.span`
+		position: absolute;
+		top: 20px;
+		left: 30px;
+		color: #2e2e2e;
+		font-weight: 500;
+		font-size: 24px;
+		letter-spacing: 1px;
+	`;
+
 	return (
 		<Container>
+			<NavLink to='/home'>
+				<SVG
+					xmlns='http://www.w3.org/2000/svg'
+					class='h-6 w-6'
+					fill='none'
+					viewBox='0 0 24 24'
+					stroke='currentColor'
+				>
+					<path
+						stroke-linecap='round'
+						stroke-linejoin='round'
+						stroke-width='2'
+						d='M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z'
+					/>
+				</SVG>
+			</NavLink>
 			<ContainerPoke>
-				<NavLink to='/home'>
-					<SVG
-						xmlns='http://www.w3.org/2000/svg'
-						class='h-6 w-6'
-						fill='none'
-						viewBox='0 0 24 24'
-						stroke='currentColor'
-					>
-						<path
-							stroke-linecap='round'
-							stroke-linejoin='round'
-							stroke-width='2'
-							d='M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z'
-						/>
-					</SVG>
-				</NavLink>
+				<ID>{typeof idPoke === 'number' ? `# ${id}` : 'CREATED'}</ID>
 				<Title>{name}</Title>
 				<ContainerTypes>
 					{types?.map((t) => (
