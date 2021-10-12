@@ -21,7 +21,7 @@ const PokeCreate = () => {
 		weight: 1,
 		height: 1,
 		types: [],
-		img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg',
+		img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/360.svg',
 	});
 
 	function handleChange(e) {
@@ -59,7 +59,7 @@ const PokeCreate = () => {
 			weight: 0,
 			height: 0,
 			types: [],
-			img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg',
+			img: '',
 		});
 		history.push('/home');
 	}
@@ -94,7 +94,6 @@ const PokeCreate = () => {
 		if (input.name === '') {
 			errors.name = "The Pokémon's name is required";
 		}
-
 		return errors;
 	}
 
@@ -221,7 +220,7 @@ const PokeCreate = () => {
 							);
 						})}
 					</div>
-					{error.name || input.name === '' ? (
+					{error.name || input.name.trim() === '' ? (
 						<button className={styles.btnDisabled} disabled>
 							Create
 						</button>

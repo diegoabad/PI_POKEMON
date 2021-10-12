@@ -52,7 +52,7 @@ const SearchBar = () => {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		dispatch(getPokemonsByName(pokeName));
+		dispatch(getPokemonsByName(pokeName.trim()));
 	}
 
 	return (
