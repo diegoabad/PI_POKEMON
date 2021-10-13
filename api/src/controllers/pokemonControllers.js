@@ -6,13 +6,14 @@ const {
 	getPokemonDbByID,
 } = require('../helpers');
 
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
 
 const getAllPokemons = async (name) => {
 	const [api, db] = await Promise.all([getPokemonApi(), getPokemonDB()]);
 	const allPoke = [...db, ...api];
 	if (name) {
-		return pokeFilterByName(allPoke, name);
+		let prueba = await pokeFilterByName(allPoke, name);
+		return prueba;
 	}
 	return allPoke;
 };
@@ -57,8 +58,65 @@ const createPokemon = async (
 	}
 };
 
+/*NO IMPLEMENTADAS*/
+const deletePokemon = async (idParams) => {
+	let poke;
+	try {
+		poke = await Pokemon.destroy({
+			where: { id: idParams },
+		});
+	} catch {
+		poke = null;
+	}
+
+	return poke;
+};
+
+const updatePokemon = async (
+	idParams,
+	name,
+	hp,
+	attack,
+	defense,
+	height,
+	weight,
+	speed,
+	types,
+	img
+) => {
+	let updateProfile = {
+		name,
+		hp,
+		attack,
+		defense,
+		height,
+		weight,
+		speed,
+		types,
+		img,
+	};
+	let filter = {
+		where: {
+			id: idParams,
+		},
+		include: [Type],
+	};
+
+	Pokemon.findOne(filter).then(function (poke) {
+		if (poke) {
+			return poke.update(updateProfile).then(function (result) {
+				return result;
+			});
+		} else {
+			throw new Error('no such product type id exist to update');
+		}
+	});
+};
+
 module.exports = {
 	getAllPokemons,
 	getPokemonDetails,
 	createPokemon,
+	deletePokemon,
+	updatePokemon,
 };

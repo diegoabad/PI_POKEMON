@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postPokemon, getTypes, filterByCreatedOrExist } from '../actions';
+import { postPokemon, getTypes } from '../../actions';
 
 import { NavLink, useHistory } from 'react-router-dom';
 
@@ -93,7 +93,10 @@ const PokeCreate = () => {
 		let errors = {};
 		if (input.name === '') {
 			errors.name = "The Pokémon's name is required";
+		} else if (input.name.trim() < 4) {
+			errors.name = '4';
 		}
+
 		return errors;
 	}
 
@@ -105,7 +108,7 @@ const PokeCreate = () => {
 		<div className={styles.container}>
 			{error.name ? (
 				<div className={styles.containerError}>
-					<p className={styles.errTitle}>LIST ERROR</p>
+					<p className={styles.errTitle}>ERRORS</p>
 					<ul class={styles.UlistErr}>
 						<li class={styles.listErr}>{error.name}</li>
 					</ul>
@@ -178,6 +181,7 @@ const PokeCreate = () => {
 						min='1'
 						name='speed'
 						placeholder='Speed'
+						onChange={(e) => handleChange(e)}
 					></input>
 					<input
 						className={styles.inputForm}
@@ -220,7 +224,7 @@ const PokeCreate = () => {
 							);
 						})}
 					</div>
-					{error.name || input.name.trim() === '' ? (
+					{error.name || input.name.trim().length < 4 ? (
 						<button className={styles.btnDisabled} disabled>
 							Create
 						</button>

@@ -1,7 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
-const NavBar = ({ types, clearFilter, filterCreated, filterTypes, sort }) => {
+const NavBar = ({
+	types,
+	clearFilter,
+	filterCreated,
+	filterTypes,
+	sort,
+	setCurrentPage,
+}) => {
 	const NavFilter = styled.nav`
 		display: flex;
 		justify-content: space-between;
@@ -66,7 +73,7 @@ const NavBar = ({ types, clearFilter, filterCreated, filterTypes, sort }) => {
 
 	return (
 		<NavFilter>
-			<SearchBar />
+			<SearchBar setCurrentPage={setCurrentPage} />
 			<ContainerFilter>
 				<BtnClear onClick={(e) => clearFilter(e)}>Clear Filter</BtnClear>
 				<Select onChange={(e) => filterTypes(e)}>

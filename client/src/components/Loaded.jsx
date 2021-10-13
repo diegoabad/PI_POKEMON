@@ -20,15 +20,15 @@ const Loaded = () => {
 		right: 0px;
 	`;
 
-	const Loading = styled.p`
+	const Text = styled.p`
 		font-size: 20px;
 		letter-spacing: 10px;
+		margin-top: 100px;
 	`;
 
 	return (
 		<ContainerGif>
-			<Gif src={gif} />
-			<Loading>Loading...</Loading>
+			{/* {<Gif src={gif} /> && <Text>Don´t Find Anything...</Text>} */}
 		</ContainerGif>
 	);
 };

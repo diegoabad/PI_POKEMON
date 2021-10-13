@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getPokemonsByName } from '../actions';
 
-const SearchBar = () => {
+const SearchBar = ({ setCurrentPage }) => {
 	/* 	const Input = styled.input`
 		padding: 10px 20px;
 		border-radius: 5px;
@@ -53,7 +53,26 @@ const SearchBar = () => {
 	function handleSubmit(e) {
 		e.preventDefault();
 		dispatch(getPokemonsByName(pokeName.trim()));
+		setCurrentPage(1);
 	}
+
+	const Btn2 = styled.button`
+		font-size: 16px;
+		width: 150px;
+		padding: 10px 5px;
+		border-radius: 5px;
+		border: 1px solid #7e7e7e;
+
+		color: #e2dddd;
+		cursor: not-allowed;
+		background-color: #a5a5a5ef;
+
+		@media (max-width: 900px) {
+			& {
+				width: 20vw;
+			}
+		}
+	`;
 
 	return (
 		<form>
@@ -73,14 +92,18 @@ const SearchBar = () => {
 				placeholder='Search Pokémon By Name'
 				onChange={(e) => handleInputChange(e)}
 			></input>
-			<Btn
-				type='submit'
-				onClick={(e) => {
-					handleSubmit(e);
-				}}
-			>
-				Buscar
-			</Btn>
+			{pokeName.trim() === '' || pokeName.trim().length < 3 ? (
+				<Btn2 disabled>Buscar</Btn2>
+			) : (
+				<Btn
+					type='submit'
+					onClick={(e) => {
+						handleSubmit(e);
+					}}
+				>
+					Buscar
+				</Btn>
+			)}
 		</form>
 	);
 };

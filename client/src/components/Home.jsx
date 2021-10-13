@@ -30,6 +30,7 @@ const Home = () => {
 		setCurrentPage(pageNumber);
 	};
 	const types = useSelector((state) => state.types);
+
 	useEffect(() => {
 		dispatch(getPokemons());
 		dispatch(getTypes());
@@ -77,6 +78,7 @@ const Home = () => {
 				filterCreated={handleFilterCreated}
 				filterTypes={handleFilterTypes}
 				sort={handleSort}
+				setCurrentPage={setCurrentPage}
 			/>
 			<NavLink to='/pokemons'>
 				<BtnCreate />

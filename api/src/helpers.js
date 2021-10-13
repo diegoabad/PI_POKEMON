@@ -20,31 +20,55 @@ let getPokemonApi = async () => {
 	});
 };
 
-let getPokemonDB = async () => {
-	let poke = await Pokemon.findAll({
+let getPokemonDB = () => {
+	let poke = Pokemon.findAll({
 		attributes: ['name', 'id', 'img', 'attack'],
 		include: {
 			model: Type,
 		},
-	});
-	poke = poke.map((p) => {
-		return {
-			id: p.id,
-			name: p.name,
-			img:
-				p.img ||
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/151.svg',
-			types: p.types.map((t) => t.name),
-			attack: p.attack || 0,
-		};
-	});
+	})
+		.then((r) => r)
+		.then((poke) =>
+			poke.map((p) => {
+				return {
+					id: p.id,
+					name: p.name,
+					img:
+						p.img ||
+						'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/151.svg',
+					types: p.types.map((t) => t.name),
+					attack: p.attack || 0,
+				};
+			})
+		);
+
 	return poke;
 };
 
-let pokeFilterByName = (allPoke, name) => {
-	return allPoke.filter((poke) => {
+let pokeFilterByName = async (allPoke, name) => {
+	let poke = allPoke.filter((poke) => {
 		return poke.name.toLowerCase() === name.toLowerCase();
 	});
+
+	if (!poke.length) {
+		let info = await axios.get('https://pokeapi.co/api/v2/pokemon/' + name);
+		info = info.data;
+		return (poke = [
+			{
+				name: info.name,
+				id: info.id,
+				img: info.sprites.other.dream_world.front_default,
+				hp: info.stats[0].base_stat,
+				attack: info.stats[1].base_stat,
+				defense: info.stats[2].base_stat,
+				speed: info.stats[3].base_stat,
+				types: info.types.map((t) => t.type.name),
+				weight: info.weight,
+				height: info.height,
+			},
+		]);
+	}
+	return poke;
 };
 
 let getPokemonDbByID = async (id) => {

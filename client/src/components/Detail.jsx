@@ -87,8 +87,9 @@ const Detail = () => {
 		display: flex;
 		box-shadow: -1px 0px 18px -5px rgba(0, 0, 0, 0.75);
 		border-radius: 30px;
-		padding: 0 20px;
+		padding: 0 20px 0 30px;
 		margin-bottom: 15px;
+		justify-content: space-between;
 	`;
 
 	const SVG = styled.svg`

@@ -1,5 +1,5 @@
 .container {
-	background-image: url('../img/form2.jpg');
+	background-image: url('../../img/form2.jpg');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -69,6 +69,7 @@
 
 .check {
 	margin-right: 10px;
+	border: #e92c2c;
 }
 
 .lbl {
@@ -136,7 +137,7 @@
 .containerError {
 	width: 300px;
 	background-color: #e92c2ce7;
-	height: 400px;
+	height: 300px;
 	border-radius: 30px;
 	position: absolute;
 	right: 150px;

@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Switch } from 'react-router';
 import Home from './components/Home';
-import PokeCreate from './components/PokeCreate';
+import PokeCreate from './components/PokeCreate/PokeCreate';
 import LandingPage from './components/LandingPage';
 import Error from './components/Error';
 import Detail from './components/Detail';
